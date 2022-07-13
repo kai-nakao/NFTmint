@@ -95,42 +95,42 @@ contract MyEpicNFT is ERC721URIStorage {
         require(5 > (balanceOf(msg.sender)));
         uint256 newItemId = _tokenIds.current();
 
-        string memory first = pickRandomFirstWord(newItemId);
-        string memory second = pickRandomSecondWord(newItemId);
-        string memory third = pickRandomThirdWord(newItemId);
+        // string memory first = pickRandomFirstWord(newItemId);
+        // string memory second = pickRandomSecondWord(newItemId);
+        // string memory third = pickRandomThirdWord(newItemId);
 
-        string memory combinedWord = string(
-            abi.encodePacked(first, second, third)
-        );
-        string memory finalSvg = string(
-            abi.encodePacked(baseSvg, combinedWord, "</text></svg>")
-        );
-        string memory json = Base64.encode(
-            bytes(
-                string(
-                    abi.encodePacked(
-                        '{"name": "',
-                        // We set the title of our NFT as the generated word.
-                        combinedWord,
-                        '", "description": "A highly acclaimed collection of squares.", "image": "data:image/svg+xml;base64,',
-                        // We add data:image/svg+xml;base64 and then append our base64 encode our svg.
-                        Base64.encode(bytes(finalSvg)),
-                        '"}'
-                    )
-                )
-            )
-        );
+        // string memory combinedWord = string(
+        //     abi.encodePacked(first, second, third)
+        // );
+        // string memory finalSvg = string(
+        //     abi.encodePacked(baseSvg, combinedWord, "</text></svg>")
+        // );
+        // string memory json = Base64.encode(
+        //     bytes(
+        //         string(
+        //             abi.encodePacked(
+        //                 '{"name": "',
+        //                 // We set the title of our NFT as the generated word.
+        //                 combinedWord,
+        //                 '", "description": "A highly acclaimed collection of squares.", "image": "data:image/svg+xml;base64,',
+        //                 // We add data:image/svg+xml;base64 and then append our base64 encode our svg.
+        //                 Base64.encode(bytes(finalSvg)),
+        //                 '"}'
+        //             )
+        //         )
+        //     )
+        // );
 
-        string memory finalTokenUri = string(
-            abi.encodePacked("data:application/json;base64,", json)
-        );
-        console.log("\n--------------------");
-        console.log(finalTokenUri);
-        console.log("--------------------\n");
+        // string memory finalTokenUri = string(
+        //     abi.encodePacked("data:application/json;base64,", json)
+        // );
+        // console.log("\n--------------------");
+        // console.log(finalTokenUri);
+        // console.log("--------------------\n");
 
         _safeMint(msg.sender, newItemId);
 
-        _setTokenURI(newItemId, finalTokenUri);
+        _setTokenURI(newItemId, "ipfs://QmX7YCL3zYYDu3L9rjPxo7QJT4mNLzq3hiGf5djYUd6kCC");
 
         _tokenIds.increment();
 
